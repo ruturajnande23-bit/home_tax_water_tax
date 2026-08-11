@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin लॉगिन</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; padding: 50px 20px; }
+    h2 { color: #2c5f2d; }
+    form { background: white; max-width: 320px; margin: 20px auto; padding: 25px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
+    button { width: 100%; padding: 12px; background: #2c5f2d; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    .error { color: red; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>🔐 Admin लॉगिन</h2>
+  <form action="/admin" method="POST">
+    <input type="password" name="password" placeholder="Admin Password" required>
+    <button type="submit">लॉगिन</button>
+  </form>
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+</body>
+</html>

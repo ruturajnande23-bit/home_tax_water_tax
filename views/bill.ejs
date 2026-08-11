@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>कर बिल</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 15px; }
+    .card { background: white; max-width: 420px; margin: 0 auto; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h2 { color: #2c5f2d; text-align: center; margin-bottom: 5px; }
+    .info { text-align: center; color: #555; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    th, td { padding: 8px; border: 1px solid #ddd; text-align: center; font-size: 14px; }
+    th { background: #2c5f2d; color: white; }
+    .subtotal { font-weight: bold; background: #eef7ee; }
+    .grandtotal { font-size: 18px; font-weight: bold; text-align: center; color: #b30000; margin: 15px 0; padding: 12px; background: #fff0f0; border-radius: 8px; }
+    a.btn { display: block; text-align: center; margin-top: 15px; background: #2c5f2d; color: white; padding: 12px; border-radius: 8px; text-decoration: none; }
+    a.logout { display: block; text-align: center; margin-top: 10px; color: #888; text-decoration: none; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🧾 कर बिल</h2>
+    <p class="info">मिळकत नं: <b><%= property %></b> &nbsp;|&nbsp; नाव: <b><%= owner %></b></p>
+
+    <table>
+      <tr><th>कराचा प्रकार</th><th>मागील</th><th>चालू</th></tr>
+      <tr><td>घरपट्टी कर</td><td><%= bill.gharpatti_magil %></td><td><%= bill.gharpatti_chalu %></td></tr>
+      <tr><td>दिवाबत्ती कर</td><td><%= bill.divabatti_magil %></td><td><%= bill.divabatti_chalu %></td></tr>
+      <tr><td>आरोग्य कर</td><td><%= bill.arogya_magil %></td><td><%= bill.arogya_chalu %></td></tr>
+      <tr><td>सामान्य पाणीपट्टी</td><td><%= bill.samanya_pani_magil %></td><td><%= bill.samanya_pani_chalu %></td></tr>
+      <tr><td>विशेष पाणीपट्टी</td><td><%= bill.vishesh_pani_magil %></td><td><%= bill.vishesh_pani_chalu %></td></tr>
+    </table>
+
+    <%
+      const total = Number(bill.gharpatti_magil) + Number(bill.gharpatti_chalu) +
+                    Number(bill.divabatti_magil) + Number(bill.divabatti_chalu) +
+                    Number(bill.arogya_magil) + Number(bill.arogya_chalu) +
+                    Number(bill.samanya_pani_magil) + Number(bill.samanya_pani_chalu) +
+                    Number(bill.vishesh_pani_magil) + Number(bill.vishesh_pani_chalu);
+    %>
+    <div class="grandtotal">एकूण भरायची रक्कम: ₹<%= total.toFixed(2) %></div>
+
+    <a href="#" class="btn">पेमेंट करा (लवकरच)</a>
+    <a href="/logout" class="logout">लॉगआउट</a>
+  </div>
+</body>
+</html>
