@@ -195,7 +195,7 @@ app.get('/admin/logout', (req, res) => {
   res.redirect('/admin');
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server chalu zala: http://localhost:${PORT}`);
 });
