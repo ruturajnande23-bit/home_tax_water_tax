@@ -4,35 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>गाव कर व्यवस्थापन</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; padding: 20px; }
-    h1 { color: #2c5f2d; opacity: 0; animation: fadeDown 0.7s ease forwards; }
-    .officials { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Noto Sans Devanagari', sans-serif;
+      background: #FBF4E3;
+      background-image: repeating-linear-gradient(#FBF4E3 0 27px, #E9DCBB 27px 28px);
+      min-height: 100vh; text-align: center; padding: 40px 20px;
+    }
+    .seal {
+      width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 50%;
+      border: 2.5px solid #1F6F5C; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; opacity: 0; animation: fadeDown 0.6s ease forwards;
+      background: #FBF4E3;
+    }
+    h1 {
+      font-family: 'Noto Serif Devanagari', serif; font-weight: 700;
+      color: #2B4A3E; font-size: 28px; margin: 0 0 4px;
+      opacity: 0; animation: fadeDown 0.7s ease forwards; animation-delay: 0.1s;
+    }
+    .subtitle {
+      color: #8A6D3B; font-size: 14px; letter-spacing: 0.04em; margin-bottom: 34px;
+      opacity: 0; animation: fadeDown 0.7s ease forwards; animation-delay: 0.2s;
+    }
+    .officials { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; margin: 0 0 36px; }
     .official {
-      background: white; border-radius: 10px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      width: 140px; opacity: 0; transform: translateY(20px);
+      background: #FFFDF8; border-radius: 12px; padding: 18px 16px 16px;
+      box-shadow: 0 2px 8px rgba(43,74,62,0.08); width: 140px;
+      opacity: 0; transform: translateY(20px);
       animation: fadeUp 0.6s ease forwards;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border-top: 3px solid #D9A404;
     }
-    .official:hover { transform: translateY(-6px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
-    .official:nth-child(1) { animation-delay: 0.15s; }
-    .official:nth-child(2) { animation-delay: 0.35s; }
-    .official:nth-child(3) { animation-delay: 0.55s; }
-    .official img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
-    .official p { margin: 8px 0 0; font-weight: bold; color: #333; }
+    .official:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(43,74,62,0.16); }
+    .official:nth-child(1) { animation-delay: 0.3s; }
+    .official:nth-child(2) { animation-delay: 0.45s; }
+    .official:nth-child(3) { animation-delay: 0.6s; }
+    .official img {
+      width: 92px; height: 92px; border-radius: 50%; object-fit: cover;
+      border: 3px solid #FBF4E3; outline: 2px solid #1F6F5C;
+    }
+    .official p { margin: 10px 0 0; font-weight: 700; color: #2B4A3E; font-size: 15px; }
     a.btn {
-      display: inline-block; margin-top: 30px; background: #2c5f2d; color: white;
-      padding: 12px 30px; border-radius: 8px; text-decoration: none; font-size: 18px;
-      opacity: 0; animation: fadeUp 0.6s ease forwards; animation-delay: 0.8s;
+      display: inline-block; background: #1F6F5C; color: #FFFDF8;
+      padding: 13px 38px; border-radius: 8px; text-decoration: none; font-size: 17px; font-weight: 700;
+      opacity: 0; animation: fadeUp 0.6s ease forwards; animation-delay: 0.85s;
       transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 12px rgba(31,111,92,0.3);
     }
-    a.btn:hover { transform: scale(1.05); background: #234d24; }
+    a.btn:hover { transform: scale(1.05); background: #175646; }
     @keyframes fadeDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
-  <h1>🏡 ग्रामपंचायत कर व्यवस्थापन</h1>
+  <div class="seal">🏛️</div>
+  <h1>ग्रामपंचायत कर व्यवस्थापन</h1>
+  <div class="subtitle">नमुना नं. ९ — घरपट्टी व पाणीपट्टी</div>
   <div class="officials">
     <div class="official">
       <img src="/images/sarpanch.jpg">
