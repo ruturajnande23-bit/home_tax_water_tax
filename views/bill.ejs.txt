@@ -65,7 +65,7 @@
 </head>
 <body>
   <div class="card">
-    <h2>🧾 कर बिल</h2>
+    <h2>🧾कराची मागणी पावती</h2>
     <p class="info">मिळकत नं: <b><%= property %></b> &nbsp;|&nbsp; नाव: <b><%= owner %></b></p>
 
     <%
