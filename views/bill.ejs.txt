@@ -15,7 +15,7 @@
       min-height: 100vh; padding: 30px 15px;
     }
     .card {
-      background: #FFFDF8; max-width: 460px; margin: 0 auto; padding: 24px;
+      background: #FFFDF8; max-width: 480px; margin: 0 auto; padding: 24px;
       border-radius: 12px; box-shadow: 0 4px 16px rgba(43,74,62,0.12);
       border-top: 4px solid #1F6F5C;
       opacity: 0; transform: translateY(16px);
@@ -28,12 +28,13 @@
     .info { text-align: center; color: #8A6D3B; margin-bottom: 20px; font-size: 14px; }
     .info b { color: #2B4A3E; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
-    th, td { padding: 9px 6px; text-align: center; font-size: 13.5px; }
+    th, td { padding: 9px 5px; text-align: center; font-size: 13px; }
     th { background: #1F6F5C; color: #FFFDF8; font-weight: 700; }
     th:first-child { border-radius: 6px 0 0 0; }
     th:last-child { border-radius: 0 6px 0 0; }
     td { border-bottom: 1px solid #EEE3C6; color: #3B2F2A; }
     tr:nth-child(even) td { background: #FAF3E2; }
+    td.ekun, th.ekun { font-weight: 700; color: #2B4A3E; }
     .grandtotal {
       font-family: 'Noto Serif Devanagari', serif; font-size: 19px; font-weight: 700;
       text-align: center; color: #8A2E2E; margin: 18px 0; padding: 14px;
@@ -47,6 +48,14 @@
     }
     a.btn:hover { transform: scale(1.02); background: #175646; }
     a.logout { display: block; text-align: center; margin-top: 12px; color: #8A6D3B; text-decoration: none; font-size: 13.5px; }
+    .notice {
+      margin-top: 22px; padding: 14px 16px; background: #FAF3E2;
+      border: 1px solid #E9DCBB; border-radius: 8px;
+      font-size: 12px; color: #6B5A3A; line-height: 1.7; text-align: left;
+    }
+    .notice p { margin: 0 0 8px; }
+    .notice ul { margin: 0; padding-left: 18px; }
+    .notice li { margin-bottom: 4px; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
@@ -56,12 +65,29 @@
     <p class="info">मिळकत नं: <b><%= property %></b> &nbsp;|&nbsp; नाव: <b><%= owner %></b></p>
 
     <table>
-      <tr><th>कराचा प्रकार</th><th>मागील</th><th>चालू</th></tr>
-      <tr><td>घरपट्टी कर</td><td><%= bill.gharpatti_magil %></td><td><%= bill.gharpatti_chalu %></td></tr>
-      <tr><td>दिवाबत्ती कर</td><td><%= bill.divabatti_magil %></td><td><%= bill.divabatti_chalu %></td></tr>
-      <tr><td>आरोग्य कर</td><td><%= bill.arogya_magil %></td><td><%= bill.arogya_chalu %></td></tr>
-      <tr><td>सामान्य पाणीपट्टी</td><td><%= bill.samanya_pani_magil %></td><td><%= bill.samanya_pani_chalu %></td></tr>
-      <tr><td>विशेष पाणीपट्टी</td><td><%= bill.vishesh_pani_magil %></td><td><%= bill.vishesh_pani_chalu %></td></tr>
+      <tr>
+        <th>कराचा प्रकार</th><th>मागील</th><th>चालू</th><th class="ekun">एकूण</th>
+      </tr>
+      <tr>
+        <td>घरपट्टी कर</td><td><%= bill.gharpatti_magil %></td><td><%= bill.gharpatti_chalu %></td>
+        <td class="ekun"><%= (Number(bill.gharpatti_magil) + Number(bill.gharpatti_chalu)).toFixed(2) %></td>
+      </tr>
+      <tr>
+        <td>दिवाबत्ती कर</td><td><%= bill.divabatti_magil %></td><td><%= bill.divabatti_chalu %></td>
+        <td class="ekun"><%= (Number(bill.divabatti_magil) + Number(bill.divabatti_chalu)).toFixed(2) %></td>
+      </tr>
+      <tr>
+        <td>आरोग्य कर</td><td><%= bill.arogya_magil %></td><td><%= bill.arogya_chalu %></td>
+        <td class="ekun"><%= (Number(bill.arogya_magil) + Number(bill.arogya_chalu)).toFixed(2) %></td>
+      </tr>
+      <tr>
+        <td>सामान्य पाणीपट्टी</td><td><%= bill.samanya_pani_magil %></td><td><%= bill.samanya_pani_chalu %></td>
+        <td class="ekun"><%= (Number(bill.samanya_pani_magil) + Number(bill.samanya_pani_chalu)).toFixed(2) %></td>
+      </tr>
+      <tr>
+        <td>विशेष पाणीपट्टी</td><td><%= bill.vishesh_pani_magil %></td><td><%= bill.vishesh_pani_chalu %></td>
+        <td class="ekun"><%= (Number(bill.vishesh_pani_magil) + Number(bill.vishesh_pani_chalu)).toFixed(2) %></td>
+      </tr>
     </table>
 
     <%
@@ -74,7 +100,3 @@
     <div class="grandtotal">एकूण भरायची रक्कम: ₹<%= total.toFixed(2) %></div>
 
     <a href="#" class="btn">पेमेंट करा (लवकरच)</a>
-    <a href="/logout" class="logout">लॉगआउट</a>
-  </div>
-</body>
-</html>
