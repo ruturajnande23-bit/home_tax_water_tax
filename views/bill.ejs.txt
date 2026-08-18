@@ -35,6 +35,10 @@
     td { border-bottom: 1px solid #EEE3C6; color: #3B2F2A; }
     tr:nth-child(even) td { background: #FAF3E2; }
     td.ekun, th.ekun { font-weight: 700; color: #2B4A3E; }
+    tr.total-row td {
+      background: #E9DCBB; font-weight: 700; color: #2B4A3E;
+      border-top: 2px solid #1F6F5C; border-bottom: none;
+    }
     .grandtotal {
       font-family: 'Noto Serif Devanagari', serif; font-size: 19px; font-weight: 700;
       text-align: center; color: #8A2E2E; margin: 18px 0; padding: 14px;
@@ -64,39 +68,63 @@
     <h2>🧾 कर बिल</h2>
     <p class="info">मिळकत नं: <b><%= property %></b> &nbsp;|&nbsp; नाव: <b><%= owner %></b></p>
 
+    <%
+      const gh = Number(bill.gharpatti_magil) + Number(bill.gharpatti_chalu);
+      const db = Number(bill.divabatti_magil) + Number(bill.divabatti_chalu);
+      const ar = Number(bill.arogya_magil) + Number(bill.arogya_chalu);
+      const sp = Number(bill.samanya_pani_magil) + Number(bill.samanya_pani_chalu);
+      const vp = Number(bill.vishesh_pani_magil) + Number(bill.vishesh_pani_chalu);
+
+      const magilTotal = Number(bill.gharpatti_magil) + Number(bill.divabatti_magil) + Number(bill.arogya_magil) + Number(bill.samanya_pani_magil) + Number(bill.vishesh_pani_magil);
+      const chaluTotal = Number(bill.gharpatti_chalu) + Number(bill.divabatti_chalu) + Number(bill.arogya_chalu) + Number(bill.samanya_pani_chalu) + Number(bill.vishesh_pani_chalu);
+      const total = gh + db + ar + sp + vp;
+    %>
+
     <table>
       <tr>
         <th>कराचा प्रकार</th><th>मागील</th><th>चालू</th><th class="ekun">एकूण</th>
       </tr>
       <tr>
         <td>घरपट्टी कर</td><td><%= bill.gharpatti_magil %></td><td><%= bill.gharpatti_chalu %></td>
-        <td class="ekun"><%= (Number(bill.gharpatti_magil) + Number(bill.gharpatti_chalu)).toFixed(2) %></td>
+        <td class="ekun"><%= gh.toFixed(2) %></td>
       </tr>
       <tr>
         <td>दिवाबत्ती कर</td><td><%= bill.divabatti_magil %></td><td><%= bill.divabatti_chalu %></td>
-        <td class="ekun"><%= (Number(bill.divabatti_magil) + Number(bill.divabatti_chalu)).toFixed(2) %></td>
+        <td class="ekun"><%= db.toFixed(2) %></td>
       </tr>
       <tr>
         <td>आरोग्य कर</td><td><%= bill.arogya_magil %></td><td><%= bill.arogya_chalu %></td>
-        <td class="ekun"><%= (Number(bill.arogya_magil) + Number(bill.arogya_chalu)).toFixed(2) %></td>
+        <td class="ekun"><%= ar.toFixed(2) %></td>
       </tr>
       <tr>
         <td>सामान्य पाणीपट्टी</td><td><%= bill.samanya_pani_magil %></td><td><%= bill.samanya_pani_chalu %></td>
-        <td class="ekun"><%= (Number(bill.samanya_pani_magil) + Number(bill.samanya_pani_chalu)).toFixed(2) %></td>
+        <td class="ekun"><%= sp.toFixed(2) %></td>
       </tr>
       <tr>
         <td>विशेष पाणीपट्टी</td><td><%= bill.vishesh_pani_magil %></td><td><%= bill.vishesh_pani_chalu %></td>
-        <td class="ekun"><%= (Number(bill.vishesh_pani_magil) + Number(bill.vishesh_pani_chalu)).toFixed(2) %></td>
+        <td class="ekun"><%= vp.toFixed(2) %></td>
+      </tr>
+      <tr class="total-row">
+        <td>एकूण</td><td><%= magilTotal.toFixed(2) %></td><td><%= chaluTotal.toFixed(2) %></td>
+        <td><%= total.toFixed(2) %></td>
       </tr>
     </table>
 
-    <%
-      const total = Number(bill.gharpatti_magil) + Number(bill.gharpatti_chalu) +
-                    Number(bill.divabatti_magil) + Number(bill.divabatti_chalu) +
-                    Number(bill.arogya_magil) + Number(bill.arogya_chalu) +
-                    Number(bill.samanya_pani_magil) + Number(bill.samanya_pani_chalu) +
-                    Number(bill.vishesh_pani_magil) + Number(bill.vishesh_pani_chalu);
-    %>
     <div class="grandtotal">एकूण भरायची रक्कम: ₹<%= total.toFixed(2) %></div>
 
     <a href="#" class="btn">पेमेंट करा (लवकरच)</a>
+    <a href="/logout" class="logout">लॉगआउट</a>
+
+    <div class="notice">
+      <p>हे बिल आपणास प्राप्त झाल्यापासून देय रकमांचा भरणा १५ दिवसांचे आत करावा. अन्यथा ग्रामपंचायत अधिनियमाच्या कलम क्र. १२९ (२) अन्वये आपल्यावर मागणी बजावण्यात येईल.</p>
+      <p><b>टीप:</b></p>
+      <ul>
+        <li>या पावतीचा नमुना कार्बन प्रतिलिपीत असावा.</li>
+        <li>नमुने देण्यात येतील तेव्हा त्यावर पुस्तकांचे क्रमांक छापलेले असावेत.</li>
+        <li>३० सप्टेंबर पूर्वी चालू करांची रक्कम भरल्यास ५% सूट मिळेल.</li>
+        <li>३१ मार्च रोजी करांची मागणी न भरल्यास ५% दंड आकारण्यात येईल.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
